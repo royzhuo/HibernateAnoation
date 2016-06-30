@@ -5,6 +5,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -42,13 +43,26 @@ public class Teacher implements Serializable {
     @Embedded       //属性级别的注解，表示该属性的类是个嵌入类，同时嵌入类必须表识是embeddale
     private Address address;
     private Date createTime;
+    @Transient    //该类表示该字段不会被映射到数据库中
+    private String subjectName;
 
     public Teacher() {
     }
-    public Teacher(String name, Address address, Date createTime) {
+
+    public Teacher(String name, Address address, Date createTime, String subjectName) {
+        
         this.name = name;
         this.address = address;
         this.createTime = createTime;
+        this.subjectName = subjectName;
+    }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     public TeacherId getTeacherId() {

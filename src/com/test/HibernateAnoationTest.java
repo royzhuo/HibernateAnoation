@@ -49,7 +49,7 @@ public class HibernateAnoationTest {
         address.setAddress("xiamen");
         address.setEmail("3610222");
         address.setPhone("05921234567");
-        Teacher teacher = new Teacher("hanshunping", address, new Date());
+        Teacher teacher = new Teacher("hanshunping", address, new Date(), "数学");
         // teacher.setTid("T000000001");
         TeacherId teacherId = new TeacherId();
         teacherId.setTid("T0000001");
