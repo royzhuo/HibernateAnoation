@@ -3,6 +3,7 @@ package com.domain;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -40,6 +41,7 @@ public class Teacher implements Serializable {
     private String tid;
     private String name;
 
+    @Embedded       //属性级别的注解，表示该属性的类是个嵌入类，同时嵌入类必须表识是embeddale
     private Address address;
     private Date createTime;
 
