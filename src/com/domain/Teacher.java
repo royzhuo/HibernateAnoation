@@ -1,11 +1,8 @@
 package com.domain;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -35,32 +32,40 @@ public class Teacher implements Serializable {
 /* 如果主键是字符串，就不能用jpa的主键生成策略，用hibernate的主键生成器 */
 
     @Id
-    @GeneratedValue(generator = "tid")    //generator主键生成器
-    @GenericGenerator(name = "tid", strategy = "assigned")
-    @Column(length = 10)
-    private String tid;
+//    @GeneratedValue(generator = "tid")    //generator主键生成器
+//    @GenericGenerator(name = "tid", strategy = "assigned")
+//    @Column(length = 10)
+//    private String tid;
+    @EmbeddedId //注解主键属性，复合主键
+    private TeacherId teacherId;
     private String name;
-
     @Embedded       //属性级别的注解，表示该属性的类是个嵌入类，同时嵌入类必须表识是embeddale
     private Address address;
     private Date createTime;
 
     public Teacher() {
     }
-
     public Teacher(String name, Address address, Date createTime) {
         this.name = name;
         this.address = address;
         this.createTime = createTime;
     }
 
-    public String getTid() {
-        return tid;
+    public TeacherId getTeacherId() {
+        return teacherId;
     }
 
-    public void setTid(String tid) {
-        this.tid = tid;
+    public void setTeacherId(TeacherId teacherId) {
+        this.teacherId = teacherId;
     }
+
+//    public String getTid() {
+//        return tid;
+//    }
+//
+//    public void setTid(String tid) {
+//        this.tid = tid;
+//    }
 
     public Address getAddress() {
         return address;

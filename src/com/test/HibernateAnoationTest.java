@@ -2,6 +2,7 @@ package com.test;
 
 import com.domain.Address;
 import com.domain.Teacher;
+import com.domain.TeacherId;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -49,7 +50,11 @@ public class HibernateAnoationTest {
         address.setEmail("3610222");
         address.setPhone("05921234567");
         Teacher teacher = new Teacher("hanshunping", address, new Date());
-        teacher.setTid("T000000001");
+        // teacher.setTid("T000000001");
+        TeacherId teacherId = new TeacherId();
+        teacherId.setTid("T0000001");
+        teacherId.setCardId("123456789012345678");
+        teacher.setTeacherId(teacherId);
         session.save(teacher);
         //提交事物
         transaction.commit();
