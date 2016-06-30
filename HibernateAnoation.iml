@@ -22,7 +22,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../UserManager/web/WEB-INF/lib/mysql-connector-java-5.0.4-bin.jar!/" />
+          <root url="jar://$USER_HOME$/Documents/personal/roy/tools/junit4.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -31,7 +31,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/personal/roy/tools/junit4.4.jar!/" />
+          <root url="jar://$USER_HOME$/Documents/personal/roy/tools/mysql-connector-java-5.1.26-bin.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

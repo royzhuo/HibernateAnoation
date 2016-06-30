@@ -46,8 +46,7 @@ public class Teacher implements Serializable {
     public Teacher() {
     }
 
-    public Teacher(String tid, String name, Address address, Date createTime) {
-        this.tid = tid;
+    public Teacher(String name, Address address, Date createTime) {
         this.name = name;
         this.address = address;
         this.createTime = createTime;
