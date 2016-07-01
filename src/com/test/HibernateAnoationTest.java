@@ -3,6 +3,10 @@ package com.test;
 import com.domain.Address;
 import com.domain.Teacher;
 import com.domain.TeacherId;
+import com.oto.CarId2;
+import com.oto.CardId;
+import com.oto.Student;
+import com.oto.Student2;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -60,6 +64,49 @@ public class HibernateAnoationTest {
         transaction.commit();
         //关闭会话
         //session.close();
+    }
+
+    //一对一单向单元测试(单向外健关联)
+    @Test
+    public void testOnetoOneDanXiang() {
+        Configuration cfg = new Configuration().configure();
+        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
+        SessionFactory sessionFactory = cfg.buildSessionFactory(serviceRegistry);
+
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        CardId cardId = new CardId("roy");
+        cardId.setCid("123456789987654321");
+        Address address = new Address();
+        address.setEmail("361022");
+        address.setPhone("123");
+        address.setAddress("xiamen");
+        Student student = new Student("roy", address, "java", cardId);
+        session.save(cardId);
+        session.save(student);
+        transaction.commit();
+
+    }
+
+    //一对一双向外健关联查询
+    @Test
+    public void testOneToOneShuangXiang() {
+        Configuration cfg = new Configuration().configure();
+        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
+        SessionFactory sessionFactory = cfg.buildSessionFactory(serviceRegistry);
+
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        CarId2 carId2 = new CarId2("roy", new Date());
+        carId2.setCid("12345678");
+        Student2 student2 = new Student2("roy", "java", carId2, new Date());
+
+        session.save(carId2);
+        session.save(student2);
+
+        transaction.commit();
+
     }
 
 }

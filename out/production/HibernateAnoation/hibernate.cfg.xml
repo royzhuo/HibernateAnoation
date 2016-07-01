@@ -17,5 +17,9 @@
         <!--<mapping class="com.domain.Student"/>-->
         <!--<mapping class="com.domain.Student"/>-->
         <mapping class="com.domain.Teacher"/>
+        <mapping class="com.oto.Student"/>
+        <mapping class="com.oto.CardId"/>
+        <mapping class="com.oto.Student2"/>
+        <mapping class="com.oto.CarId2"/>
     </session-factory>
 </hibernate-configuration>
