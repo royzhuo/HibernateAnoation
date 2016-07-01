@@ -3,6 +3,8 @@ package com.test;
 import com.domain.Address;
 import com.domain.Teacher;
 import com.domain.TeacherId;
+import com.mto.ClassRoom;
+import com.mto.Student3;
 import com.oto.CarId2;
 import com.oto.CardId;
 import com.oto.Student;
@@ -106,6 +108,48 @@ public class HibernateAnoationTest {
         session.save(student2);
 
         transaction.commit();
+
+    }
+
+    //多对一单向外健关联
+    @Test
+    public void manyToOneDanXiang() {
+        Configuration cfg = new Configuration().configure();
+        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
+        SessionFactory sessionFactory = cfg.buildSessionFactory(serviceRegistry);
+
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        ClassRoom classRoom1 = new ClassRoom("C01", "软件工程");
+        ClassRoom classRoom2 = new ClassRoom("C02", "网络工程");
+
+        Student3 student1 = new Student3("roy", "java", new Date());
+        Student3 student2 = new Student3("alan", "c#", new Date());
+        Student3 student3 = new Student3("miller", "c", new Date());
+        Student3 student4 = new Student3("weir", "ios", new Date());
+
+        student1.setClassRoom(classRoom1);
+        student3.setClassRoom(classRoom1);
+        student2.setClassRoom(classRoom2);
+        student4.setClassRoom(classRoom2);
+
+        session.save(classRoom1);
+        session.save(classRoom2);
+        session.save(student1);
+        session.save(student2);
+        session.save(student3);
+        session.save(student4);
+
+        transaction.commit();
+
+
+    }
+
+    //一对多单向关联关系
+    @Test
+    public void testOneToManyDanxiang() {
+
 
     }
 

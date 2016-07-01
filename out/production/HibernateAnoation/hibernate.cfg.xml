@@ -16,10 +16,15 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <!--<mapping class="com.domain.Student"/>-->
         <!--<mapping class="com.domain.Student"/>-->
-        <mapping class="com.domain.Teacher"/>
-        <mapping class="com.oto.Student"/>
-        <mapping class="com.oto.CardId"/>
-        <mapping class="com.oto.Student2"/>
-        <mapping class="com.oto.CarId2"/>
+        <!-- <mapping class="com.domain.Teacher"/>-->
+        <!--  
+                 一对一
+         <mapping class="com.oto.Student"/>
+         <mapping class="com.oto.CardId"/>
+         <mapping class="com.oto.Student2"/>
+         <mapping class="com.oto.CarId2"/>
+         -->
+        <mapping class="com.mto.Student3"/>
+        <mapping class="com.mto.ClassRoom"/>
     </session-factory>
 </hibernate-configuration>
