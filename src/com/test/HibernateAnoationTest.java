@@ -3,8 +3,14 @@ package com.test;
 import com.domain.Address;
 import com.domain.Teacher;
 import com.domain.TeacherId;
+import com.mtm.Custmers;
+import com.mtm.Goods;
 import com.mto.ClassRoom;
 import com.mto.Student3;
+import com.otm.ClassRoom2;
+import com.otm.Department;
+import com.otm.Employee;
+import com.otm.Student5;
 import com.oto.CarId2;
 import com.oto.CardId;
 import com.oto.Student;
@@ -19,6 +25,8 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author roy.zhuo
@@ -149,7 +157,119 @@ public class HibernateAnoationTest {
     //一对多单向关联关系
     @Test
     public void testOneToManyDanxiang() {
+        Configuration cfg = new Configuration().configure();
+        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
+        SessionFactory sessionFactory = cfg.buildSessionFactory(serviceRegistry);
 
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        Student5 student1 = new Student5("roy", "java", new Date());
+        Student5 student2 = new Student5("alan", "jsp", new Date());
+        Student5 student3 = new Student5("miller", "ios", new Date());
+        Student5 student4 = new Student5("leo", "php", new Date());
+
+        Set<Student5> students1 = new HashSet<>();
+        students1.add(student1);
+        students1.add(student2);
+        Set<Student5> students2 = new HashSet<>();
+        students2.add(student3);
+        students2.add(student4);
+
+        ClassRoom2 c1 = new ClassRoom2("软件工程", students1);
+        c1.setCid("C001");
+        ClassRoom2 c2 = new ClassRoom2("网络工程", students2);
+        c2.setCid("C002");
+
+        session.save(student1);
+        session.save(student2);
+        session.save(student3);
+        session.save(student4);
+
+        session.save(c1);
+        session.save(c2);
+
+        transaction.commit();
+    }
+
+    //一对多双向外健关联关系
+    @Test
+    public void testOneToManyShuangXiang() {
+        Configuration cfg = new Configuration().configure();
+        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
+        SessionFactory sessionFactory = cfg.buildSessionFactory(serviceRegistry);
+
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        Employee employee = new Employee("roy", new Date());
+        Employee employee2 = new Employee("alan", new Date());
+        Employee employee3 = new Employee("leo", new Date());
+        Employee employee4 = new Employee("miller", new Date());
+
+        Department department = new Department("ruan jian gong cheng");
+        Department department2 = new Department("wang luo gong cheng");
+        department.setDid("D001");
+        department2.setDid("D002");
+
+        employee.setDept(department);
+        employee2.setDept(department);
+        employee3.setDept(department);
+        employee4.setDept(department2);
+
+        session.save(department);
+        session.save(department2);
+        session.save(employee);
+        session.save(employee2);
+        session.save(employee3);
+        session.save(employee4);
+
+        transaction.commit();
+
+    }
+
+    //多对多单向
+    @Test
+    public void testManyToManyDanXiang() {
+        Configuration cfg = new Configuration().configure();
+        ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
+        SessionFactory sessionFactory = cfg.buildSessionFactory(serviceRegistry);
+
+        Session session = sessionFactory.getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        Custmers custmer1 = new Custmers("roy", 3);
+        Custmers customer2 = new Custmers("alan", 3);
+        Custmers customer3 = new Custmers("miller", 6);
+
+        Goods good1 = new Goods("可乐", 3, new Date());
+        Goods good2 = new Goods("雪碧", 3, new Date());
+        Goods good3 = new Goods("手抓饼", 6, new Date());
+        Goods good4 = new Goods("八宝粥", 3, new Date());
+
+        Set<Goods> orders1 = new HashSet<>();
+        Set<Goods> orders2 = new HashSet<>();
+        Set<Goods> orders3 = new HashSet<>();
+
+        orders1.add(good1);
+        orders1.add(good4);
+        orders2.add(good2);
+        orders3.add(good3);
+        orders3.add(good4);
+        orders3.add(good2);
+
+        custmer1.setGoodses(orders1);
+        customer2.setGoodses(orders2);
+        customer3.setGoodses(orders3);
+
+        session.save(good1);
+        session.save(good2);
+        session.save(good3);
+        session.save(good4);
+        session.save(custmer1);
+        session.save(customer2);
+        session.save(customer3);
+
+        transaction.commit();
 
     }
 

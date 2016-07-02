@@ -24,7 +24,19 @@
          <mapping class="com.oto.Student2"/>
          <mapping class="com.oto.CarId2"/>
          -->
+        <!--
+        多对一
         <mapping class="com.mto.Student3"/>
         <mapping class="com.mto.ClassRoom"/>
+        -->
+        <!--
+        一对多 单向
+        <mapping class="com.otm.Student5"/>
+        <mapping class="com.otm.ClassRoom2"/>-->
+        <mapping class="com.otm.Employee"/>
+        <mapping class="com.otm.Department"/>
+
+        <mapping class="com.mtm.Goods"/>
+        <mapping class="com.mtm.Custmers"/>
     </session-factory>
 </hibernate-configuration>
