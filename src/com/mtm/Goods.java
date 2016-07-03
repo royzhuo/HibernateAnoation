@@ -1,10 +1,13 @@
 package com.mtm;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * @author roy.zhuo
@@ -20,7 +23,8 @@ public class Goods {
     private String name;
     private int price;
     private Date createTime;
-
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "goodses")
+    private Set<Custmers> custmerses;
 
     public Goods(String name, int price, Date createTime) {
         this.name = name;
@@ -31,6 +35,14 @@ public class Goods {
     public Goods() {
     }
 
+    public Set<Custmers> getCustmerses() {
+        return custmerses;
+    }
+
+    public void setCustmerses(Set<Custmers> custmerses) {
+        this.custmerses = custmerses;
+    }
+
     public Integer getGid() {
         return gid;
     }
@@ -38,7 +50,7 @@ public class Goods {
     public void setGid(Integer gid) {
         this.gid = gid;
     }
-    
+
 
     public String getName() {
         return name;

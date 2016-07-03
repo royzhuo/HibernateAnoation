@@ -241,10 +241,10 @@ public class HibernateAnoationTest {
         Custmers customer2 = new Custmers("alan", 3);
         Custmers customer3 = new Custmers("miller", 6);
 
-        Goods good1 = new Goods("可乐", 3, new Date());
-        Goods good2 = new Goods("雪碧", 3, new Date());
-        Goods good3 = new Goods("手抓饼", 6, new Date());
-        Goods good4 = new Goods("八宝粥", 3, new Date());
+        Goods good1 = new Goods("color", 3, new Date());
+        Goods good2 = new Goods("xuebi", 3, new Date());
+        Goods good3 = new Goods("shouzhuabing", 6, new Date());
+        Goods good4 = new Goods("babaozhou", 3, new Date());
 
         Set<Goods> orders1 = new HashSet<>();
         Set<Goods> orders2 = new HashSet<>();
